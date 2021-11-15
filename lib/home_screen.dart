@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sliver_appbar/kagura_tab.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -9,7 +10,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _indexList = 0;
-  static final List tab = [Text("1"), Text("2"), Text("3")];
+  static final List tab = [KaguraTab(), Text("date2"), TextField()];
   @override
   void _tappedList(int index) {
     setState(() {
@@ -21,7 +22,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: SliverAppBar(),
+        appBar: AppBar(
+          title: Text("kagura"),
+        ),
         body: tab[_indexList],
         bottomNavigationBar: BottomNavigationBar(
           onTap: _tappedList,
