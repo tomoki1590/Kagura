@@ -53,10 +53,22 @@ class _KaguraTabState extends State<KaguraTab> {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
-          Image.network(
-            "https://pbs.twimg.com/media/Dt5OowNU0AAznML?format=jpg&name=large",
-            width: 300,
-            height: 300,
+          Stack(
+            children: [
+              SizedBox(
+                height: 300,
+                width: 300,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: Container(),
+                ),
+              ),
+              Image.network(
+                "https://pbs.twimg.com/media/Dt5OowNU0AAznML?format=jpg&name=large",
+                width: 300,
+                height: 300,
+              ),
+            ],
           ),
           Image.network(
             "https://pbs.twimg.com/media/DhO-r07U8AEMv8W.jpg",
@@ -99,29 +111,3 @@ class _KaguraTabState extends State<KaguraTab> {
     return Text("神楽団名");
   }
 }
-// Container(
-// child: Column(
-// children: [
-// SingleChildScrollView(
-// scrollDirection: Axis.horizontal,
-// child: Row(
-// children: [
-// Image.network(
-// "https://pbs.twimg.com/media/Dt5OowNU0AAznML?format=jpg&name=large",
-// width: 300,
-// height: 300,
-// ),
-// Image.network(
-// "https://pbs.twimg.com/media/DhO-r07U8AEMv8W.jpg",
-// width: 300,
-// height: 300,
-// )
-// ],
-// ),
-// ),
-// Column(
-// children: [Text("神楽団名")],
-// )
-// ],
-// ),
-// ),
