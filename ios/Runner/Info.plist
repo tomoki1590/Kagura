@@ -50,11 +50,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>Privacy – Photo Library Usage Description</key>
-	<string>利用目的；</string>
-	<key>Privacy – Camera Usage Description</key>
-	<string>利用目的：</string>
-	<key>Privacy – Microphone Usage Description</key>
-	<string>利用目的：</string>
 </dict>
 </plist>
