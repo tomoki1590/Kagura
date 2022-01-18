@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "860547245671",
+    "project_id": "kagura1-91899",
+    "storage_bucket": "kagura1-91899.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860547245671:android:5acd8fecf7ecb83200d6c2",
+        "android_client_info": {
+          "package_name": "com.example.sliver_appbar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "860547245671-5723q9oqbti6cm6t83a1ljv0v7tl270h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0fjlGfvtKLBqYUou2FwUs63CTBlNzNlw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "860547245671-5723q9oqbti6cm6t83a1ljv0v7tl270h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "860547245671-jd5s0omljhglufa8gencp8s45rqkosof.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.sliverAppbar"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860547245671:android:e7fe9350ce8df67500d6c2",
+        "android_client_info": {
+          "package_name": "com.kagura"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "860547245671-5723q9oqbti6cm6t83a1ljv0v7tl270h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0fjlGfvtKLBqYUou2FwUs63CTBlNzNlw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "860547245671-5723q9oqbti6cm6t83a1ljv0v7tl270h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "860547245671-jd5s0omljhglufa8gencp8s45rqkosof.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.sliverAppbar"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
