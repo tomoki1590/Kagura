@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sliver_appbar/home_screen.dart';
+import 'package:sliver_appbar/login.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized(); //２行目だけだとエラーになるので追加
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false, // <- Debug の 表示を OFF
       title: "記事",
-      home: HomeScreen(),
+      home: Login(),
     );
   }
 }

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:sliver_appbar/sign_up.dart';
+import 'package:sliver_appbar/utils/auth.dart';
+
+import 'kagura_tab.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -34,17 +37,27 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              Container(
+              SizedBox(
                 width: 300,
                 child: TextField(
                   controller: passwordController,
                   decoration: const InputDecoration(hintText: 'パスワード'),
                 ),
               ),
-              ElevatedButton(onPressed: () {}, child: Text('Login')),
-              Padding(
-                padding: const EdgeInsets.only(top: 30),
-                child: const Text("初めての方はこちらから"),
+              ElevatedButton(
+                  onPressed: () async {
+                    var result = await Authentication.emailSignIn(
+                        email: emailController.text,
+                        pass: passwordController.text);
+                    if (result == true) {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => KaguraTab()));
+                    }
+                  },
+                  child: const Text('Login')),
+              const Padding(
+                padding: EdgeInsets.only(top: 30),
+                child: Text("初めての方はこちらから"),
               ),
               TextButton(
                   onPressed: () {

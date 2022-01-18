@@ -74,7 +74,7 @@ class _SignUpState extends State<SignUp> {
                     var result = await Authentication.signUp(
                         email: emailController.text,
                         pass: passwordController.text);
-                    {
+                    if (result == true) {
                       Navigator.pop(context);
                     }
                   }

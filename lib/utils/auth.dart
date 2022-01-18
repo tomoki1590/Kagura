@@ -13,7 +13,21 @@ class Authentication {
       return true;
     } on FirebaseAuthException catch (e) {
       print('auth rezistor $e');
-      return '登録エラー発生';
+      return false;
+    }
+  }
+
+  static Future<dynamic> emailSignIn(
+      {required String email, required String pass}) async {
+    final UserCredential _result = await _firebaseAuth
+        .signInWithEmailAndPassword(email: email, password: pass);
+    try {
+      currentUser = _result.user;
+      print('login finished');
+      return true;
+    } on FirebaseAuthException catch (e) {
+      print('auth lost,$e');
+      return false;
     }
   }
 }
