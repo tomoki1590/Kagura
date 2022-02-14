@@ -1,12 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sliver_appbar/login.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'login.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized(); //２行目だけだとエラーになるので追加
   await Firebase.initializeApp(); // ここ大事！Firebase使うのに初期化しないとエラーになる
-  runApp(const MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {

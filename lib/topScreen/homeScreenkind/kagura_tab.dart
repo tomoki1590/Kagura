@@ -41,7 +41,7 @@ class _KaguraTabState extends State<KaguraTab> {
                   _textimage(),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:sliver_appbar/sign_up.dart';
+import 'package:sliver_appbar/topScreen/home_screen.dart';
 import 'package:sliver_appbar/utils/auth.dart';
-
-import 'kagura_tab.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -50,8 +49,10 @@ class _LoginState extends State<Login> {
                         email: emailController.text,
                         pass: passwordController.text);
                     if (result == true) {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => KaguraTab()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HomeScreen()));
                     }
                   },
                   child: const Text('Login')),

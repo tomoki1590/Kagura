@@ -70,7 +70,8 @@ class _SignUpState extends State<SignUp> {
                 onPressed: () async {
                   if (nameController.text.isNotEmpty &&
                       emailController.text.isNotEmpty &&
-                      passwordController.text.isNotEmpty) {
+                      passwordController.text.isNotEmpty &&
+                      image != null) {
                     var result = await Authentication.signUp(
                         email: emailController.text,
                         pass: passwordController.text);
