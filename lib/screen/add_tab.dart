@@ -23,40 +23,42 @@ class AddTab extends ConsumerWidget {
       appBar: AppBar(
         title: Text('写真の追加ができるよー'),
       ),
-      body: Column(
-        children: [
-          getImage.imageFile == null
-              ? Padding(padding: const EdgeInsets.all(8.0), child: Text(''))
-              : Image.file(getImage.imageFile!),
-          if (getImage.imageFile != null)
-            //画像が表示された時に再度画像のとる　表示を変えるのに使用
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Text(' '),
-            ),
-          Center(
-            child: SizedBox(
-              width: 300,
-              height: 300,
-              child: OutlinedButton(
-                onPressed: () async {
-                  final pickedFile =
-                      await picker.getImage(source: ImageSource.gallery);
-                  if (pickedFile != null) {
-                    getImageNotifier.setImageFile(File(pickedFile.path));
-                  }
-                },
-                child: Icon(Icons.photo),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            getImage.imageFile == null
+                ? Padding(padding: const EdgeInsets.all(8.0), child: Text(''))
+                : Image.file(getImage.imageFile!),
+            if (getImage.imageFile != null)
+              //画像が表示された時に再度画像のとる　表示を変えるのに使用
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(' '),
+              ),
+            Center(
+              child: SizedBox(
+                width: 300,
+                height: 300,
+                child: OutlinedButton(
+                  onPressed: () async {
+                    final pickedFile =
+                        await picker.getImage(source: ImageSource.gallery);
+                    if (pickedFile != null) {
+                      getImageNotifier.setImageFile(File(pickedFile.path));
+                    }
+                  },
+                  child: Icon(Icons.photo),
+                ),
               ),
             ),
-          ),
-          Text('神楽団名'),
-          TextField(),
-          Text('演目'),
-          TextField(),
-          Text('撮影場所など'),
-          TextField(),
-        ],
+            Text('神楽団名'),
+            TextField(),
+            Text('演目'),
+            TextField(),
+            Text('撮影場所など'),
+            TextField(),
+          ],
+        ),
       ),
     );
   }
