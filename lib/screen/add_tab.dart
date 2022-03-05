@@ -3,16 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:sliver_appbar/add/get_image.dart';
-import 'package:sliver_appbar/add/get_image_notifier.dart';
+import 'package:sliver_appbar/provider.dart';
 
 //riverpod
-final getImageProvider = StateNotifierProvider<GetImageNotifier, GetImage>(
-    (ref) => GetImageNotifier(ref.read));
-
 class AddTab extends ConsumerWidget {
-  AddTab({Key? key}) : super(key: key);
-  final picker = ImagePicker();
+  const AddTab({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -21,25 +16,16 @@ class AddTab extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('写真の追加ができるよー'),
+        actions: [ElevatedButton(onPressed: () {}, child: const Text('保存'))],
+        title: const Text('写真'),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            getImage.imageFile == null
-                ? Padding(padding: const EdgeInsets.all(8.0), child: Text(''))
-                : Image.file(getImage.imageFile!),
-            if (getImage.imageFile != null)
-              //画像が表示された時に再度画像のとる　表示を変えるのに使用
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Text(' '),
-              ),
             Center(
               child: SizedBox(
-                width: 300,
-                height: 300,
-                child: OutlinedButton(
+                width: double.infinity,
+                child: ElevatedButton(
                   onPressed: () async {
                     final pickedFile =
                         await picker.getImage(source: ImageSource.gallery);
@@ -51,12 +37,26 @@ class AddTab extends ConsumerWidget {
                 ),
               ),
             ),
-            Text('神楽団名'),
-            TextField(),
+            const Text('神楽団名'),
+            TextField(
+              autofocus: true,
+              onChanged: (homeName) {
+                ref.watch(getHomeName);
+              },
+            ),
             Text('演目'),
             TextField(),
             Text('撮影場所など'),
             TextField(),
+            getImage.imageFile == null
+                ? const Padding(padding: EdgeInsets.all(8.0), child: Text(''))
+                : Image.file(getImage.imageFile!),
+            if (getImage.imageFile != null)
+              //画像が表示された時に再度画像のとる　表示を変えるのに使用
+              const Padding(
+                padding: EdgeInsets.all(20.0),
+                child: Text(' '),
+              ),
           ],
         ),
       ),
