@@ -36,7 +36,7 @@ class _AccountTabState extends State<AccountTab> {
               ),
             ),
             const ListTile(
-              title: Text("kagura"),
+              title: Text(''),
             ),
             const ListTile(
               title: Text("退会"),

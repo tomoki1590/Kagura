@@ -14,6 +14,10 @@ class AddTab extends ConsumerWidget {
     final getImage = ref.watch(getImageProvider);
     final getImageNotifier = ref.watch(getImageProvider.notifier);
 
+    TextEditingController groupNameController = TextEditingController();
+    TextEditingController perfomanceController = TextEditingController();
+    TextEditingController areaController = TextEditingController();
+
     return Scaffold(
       appBar: AppBar(
         actions: [ElevatedButton(onPressed: () {}, child: const Text('保存'))],
@@ -22,6 +26,33 @@ class AddTab extends ConsumerWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            Center(
+              child: Container(
+                width: 200,
+                child: Column(
+                  children: [
+                    TextField(
+                      keyboardType: TextInputType.multiline,
+                      maxLines: null,
+                      controller: groupNameController,
+                      decoration: InputDecoration(hintText: '神楽団名'),
+                      autofocus: true,
+                      onChanged: (homeName) {
+                        ref.watch(getHomeName);
+                      },
+                    ),
+                    TextField(
+                      controller: perfomanceController,
+                      decoration: InputDecoration(hintText: '演目'),
+                    ),
+                    TextField(
+                      controller: areaController,
+                      decoration: InputDecoration(hintText: '撮影場所など'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
             Center(
               child: SizedBox(
                 width: double.infinity,
@@ -37,17 +68,6 @@ class AddTab extends ConsumerWidget {
                 ),
               ),
             ),
-            const Text('神楽団名'),
-            TextField(
-              autofocus: true,
-              onChanged: (homeName) {
-                ref.watch(getHomeName);
-              },
-            ),
-            Text('演目'),
-            TextField(),
-            Text('撮影場所など'),
-            TextField(),
             getImage.imageFile == null
                 ? const Padding(padding: EdgeInsets.all(8.0), child: Text(''))
                 : Image.file(getImage.imageFile!),

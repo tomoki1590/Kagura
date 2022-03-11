@@ -57,4 +57,5 @@
 <key>NSMicrophoneUsageDescription</key>
 <string>マイクの使用を許可しますか</string>
 </dict>
+
 </plist>

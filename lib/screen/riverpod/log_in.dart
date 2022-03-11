@@ -67,38 +67,6 @@ class RiverPodLogin extends ConsumerWidget {
               ///TODOログイン処理
               SignInButton(Buttons.Google,
                   text: "Sign up with Google", onPressed: () {}),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SignInButton(
-                  Buttons.Apple,
-                  onPressed: () {},
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SignInButton(
-                  Buttons.Email,
-                  onPressed: () {},
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SignInButton(Buttons.Facebook, onPressed: () {}),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SignInButton(
-                  Buttons.Twitter,
-                  onPressed: () {},
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SignInButton(
-                  Buttons.Yahoo,
-                  onPressed: () {},
-                ),
-              ),
             ],
           ),
         ),

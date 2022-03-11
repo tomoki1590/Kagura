@@ -23,8 +23,8 @@ class _KaguraTabState extends State<KaguraTab> {
               margin: EdgeInsets.zero,
               child: Column(
                 children: [
-                  _kaguragroupe(),
                   _kaguraimage(),
+                  _kaguragroupe(),
                   _titleimage(),
                   _textimage(),
                 ],
@@ -35,8 +35,8 @@ class _KaguraTabState extends State<KaguraTab> {
               margin: EdgeInsets.zero,
               child: Column(
                 children: [
-                  _kaguragroupe(),
                   _kaguraimage(),
+                  _kaguragroupe(),
                   _titleimage(),
                   _textimage(),
                 ],
@@ -51,31 +51,33 @@ class _KaguraTabState extends State<KaguraTab> {
   Widget _kaguraimage() {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: Row(
-        children: [
-          Stack(
-            children: [
-              SizedBox(
-                height: 300,
-                width: 300,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: Container(),
+      child: Container(
+        child: Row(
+          children: [
+            Stack(
+              children: [
+                SizedBox(
+                  height: 300,
+                  width: 300,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Container(),
+                  ),
                 ),
-              ),
-              Image.network(
-                "https://pbs.twimg.com/media/Dt5OowNU0AAznML?format=jpg&name=large",
-                width: 300,
-                height: 300,
-              ),
-            ],
-          ),
-          Image.network(
-            "https://pbs.twimg.com/media/DhO-r07U8AEMv8W.jpg",
-            width: 300,
-            height: 300,
-          )
-        ],
+                Image.network(
+                  "https://pbs.twimg.com/media/Dt5OowNU0AAznML?format=jpg&name=large",
+                  width: 300,
+                  height: 300,
+                ),
+              ],
+            ),
+            Image.network(
+              "https://pbs.twimg.com/media/DhO-r07U8AEMv8W.jpg",
+              width: 300,
+              height: 300,
+            )
+          ],
+        ),
       ),
     );
   }
@@ -90,7 +92,7 @@ class _KaguraTabState extends State<KaguraTab> {
             children: [
               Container(
                 margin: EdgeInsets.all(20),
-                child: Text(""),
+                child: Text("タイトル"),
               )
             ],
           )),

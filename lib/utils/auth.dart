@@ -7,8 +7,7 @@ class Authentication {
   static Future<dynamic> signUp(
       {required String email, required String pass}) async {
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: pass);
+     await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: pass);
       print('auth rezistor ok');
       return true;
     } on FirebaseAuthException catch (e) {

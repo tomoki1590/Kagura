@@ -49,7 +49,7 @@ class _LoginState extends State<Login> {
                         email: emailController.text,
                         pass: passwordController.text);
                     if (result == true) {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) => HomeScreen()));
@@ -65,8 +65,6 @@ class _LoginState extends State<Login> {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => SignUp()));
                   },
-
-                  ///TODOサインアップ処理
                   child: const Text("新規登録")),
 
               ///TODOログイン処理
@@ -83,24 +81,6 @@ class _LoginState extends State<Login> {
                 padding: const EdgeInsets.all(8.0),
                 child: SignInButton(
                   Buttons.Email,
-                  onPressed: () {},
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SignInButton(Buttons.Facebook, onPressed: () {}),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SignInButton(
-                  Buttons.Twitter,
-                  onPressed: () {},
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SignInButton(
-                  Buttons.Yahoo,
                   onPressed: () {},
                 ),
               ),
