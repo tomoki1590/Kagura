@@ -28,7 +28,7 @@ class AddTab extends ConsumerWidget {
           children: [
             Center(
               child: Container(
-                width: 200,
+                width: 300,
                 child: Column(
                   children: [
                     TextField(
@@ -42,10 +42,14 @@ class AddTab extends ConsumerWidget {
                       },
                     ),
                     TextField(
+                      keyboardType: TextInputType.multiline,
+                      maxLines: null,
                       controller: perfomanceController,
                       decoration: InputDecoration(hintText: '演目'),
                     ),
                     TextField(
+                      keyboardType: TextInputType.multiline,
+                      maxLines: null,
                       controller: areaController,
                       decoration: InputDecoration(hintText: '撮影場所など'),
                     ),
@@ -60,6 +64,7 @@ class AddTab extends ConsumerWidget {
                   onPressed: () async {
                     final pickedFile =
                         await picker.getImage(source: ImageSource.gallery);
+
                     if (pickedFile != null) {
                       getImageNotifier.setImageFile(File(pickedFile.path));
                     }
@@ -68,15 +73,36 @@ class AddTab extends ConsumerWidget {
                 ),
               ),
             ),
+            Center(
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () async {
+                    final pickedFile =
+                        await picker.getVideo(source: ImageSource.gallery);
+                    if (pickedFile != null) {
+                      getImageNotifier.setImageFile(File(pickedFile.path));
+                    }
+                  },
+                  child: Icon(Icons.movie),
+                ),
+              ),
+            ),
             getImage.imageFile == null
                 ? const Padding(padding: EdgeInsets.all(8.0), child: Text(''))
                 : Image.file(getImage.imageFile!),
             if (getImage.imageFile != null)
-              //画像が表示された時に再度画像のとる　表示を変えるのに使用
               const Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Text(' '),
+                padding: EdgeInsets.all(10.0),
               ),
+            getImage.imageFile == null
+                ? const Padding(padding: EdgeInsets.all(8.0), child: Text(''))
+                : Image.file(getImage.imageFile!),
+            if (getImage.imageFile != null)
+              const Padding(
+                padding: EdgeInsets.all(10.0),
+              )
+            //画像が表示された時に再度画像のとる　表示を変えるのに使用
           ],
         ),
       ),

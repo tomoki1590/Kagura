@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sliver_appbar/screen/account/login.dart';
+import 'package:sliver_appbar/screen/kagura_add.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized(); //２行目だけだとエラーになるので追加
@@ -15,9 +16,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp(
         debugShowCheckedModeBanner: false, // Debug の 表示を OFF
         title: "記事",
-        home: Login());
+        home: KaguraAdd());
   }
 }
