@@ -48,29 +48,29 @@ Future getVideo() async {
       appBar: AppBar(title: Text('')),
       body: Container(
         width: MediaQuery.of(context).size.width,
-height: MediaQuery.of(context).size.height,
+        height: MediaQuery.of(context).size.height,
         child: Container(
           child: SingleChildScrollView(
             child: Column(
               children: [
                 ElevatedButton(
-                  child: Icon(Icons.add),
+                  child: Icon(Icons.image),
                   onPressed: getImage,
                 ),
                 Container(
                   child: image == null
-                      ? Text('No image selected.')
+                      ? Text('画像が選ばれておりません')
                       : Image.file(image!),
                 ),
                 ElevatedButton(
-                  child: Icon(Icons.add),
+                  child: Icon(Icons.movie),
                   onPressed: getVideo,
                 ),
                  Container(
                    width: 300,
                    height:300,
                   child: _controller == null
-                      ? Text('No image selected.')
+                      ? Text('動画が選ばれていません')
                       :VideoPlayer(_controller!)
                 )
               ],
