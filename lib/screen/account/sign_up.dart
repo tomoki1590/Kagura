@@ -17,9 +17,8 @@ class _SignUpState extends State<SignUp> {
   TextEditingController nameController = TextEditingController();
   File? image;
   ImagePicker picker = ImagePicker();
-  
   Future<void> getImageFromGallery() async {
-    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
         image = File(pickedFile.path);

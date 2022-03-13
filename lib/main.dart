@@ -1,11 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sliver_appbar/screen/kagura_add.dart';
 
 Future<void> main() async {
-  // WidgetsFlutterBinding.ensureInitialized(); //２行目だけだとエラーになるので追加
-  // await Firebase.initializeApp(); // ここ大事！Firebase使うのに初期化しないとエラーになる
+  WidgetsFlutterBinding.ensureInitialized(); //２行目だけだとエラーになるので追加
+  await Firebase.initializeApp(); // ここ大事！Firebase使うのに初期化しないとエラーになる
   runApp(const ProviderScope(child: MyApp()));
 }
 
