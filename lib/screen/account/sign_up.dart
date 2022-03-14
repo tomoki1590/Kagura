@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:sliver_appbar/screen/account/login.dart';
+import 'package:sliver_appbar/utils/account.dart';
 import 'package:sliver_appbar/utils/auth.dart';
+import 'package:sliver_appbar/utils/fanction.dart';
+import 'package:sliver_appbar/utils/firestore/users.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -17,26 +19,8 @@ class _SignUpState extends State<SignUp> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController nameController = TextEditingController();
+  TextEditingController uidController = TextEditingController();
   File? image;
-  ImagePicker picker = ImagePicker();
-
-  Future<void> getImageFromGallery() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      setState(() {
-        image = File(pickedFile.path);
-      });
-    }
-  }
-
-  Future<void> upLoadImage(String uid) async {
-    final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
-    final Reference reference = firebaseStorage.ref();
-    await reference.child(uid).putFile(image!);
-    //先ほどアップロードした画像のリンクを取得。
-    String downloadUrl = await firebaseStorage.ref(uid).getDownloadURL();
-    print('imagePath : $downloadUrl');
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +32,13 @@ class _SignUpState extends State<SignUp> {
         child: Column(
           children: [
             GestureDetector(
-              onTap: () {
-                getImageFromGallery();
+              onTap: () async {
+                var result = await Fanction.getImageFromGallery();
+                if (result != null) {
+                  setState(() {
+                    image = File(result.path);
+                  });
+                }
               },
               child: CircleAvatar(
                 foregroundImage: image == null ? null : FileImage(image!),
@@ -88,9 +77,18 @@ class _SignUpState extends State<SignUp> {
                         email: emailController.text,
                         pass: passwordController.text);
                     if (result is UserCredential) {
-                      await upLoadImage(result.user!.uid);
-
-                      Navigator.pop(context);
+                      String imagepath =
+                          await Fanction.upLoadImage(result.user!.uid, image!);
+                      Account newAccount = Account(
+                          id: result.user!.uid,
+                          name: nameController.text,
+                          imagePath: imagepath,
+                          userid: uidController.text);
+                      var results = await UserFireStore.setUser(newAccount);
+                      if (results == true) {
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (context) => Login()));
+                      }
                     }
                   }
                 },

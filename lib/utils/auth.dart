@@ -1,28 +1,29 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:sliver_appbar/utils/account.dart';
 
 class Authentication {
   static final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   static User? currentUser;
-
+  static Account? myAccount;
   static Future<dynamic> signUp(
       {required String email, required String pass}) async {
     try {
       UserCredential newAccount = await _firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: pass);
-      print('auth rezistor ok');
+      print(' rezistor ');
       return newAccount;
     } on FirebaseAuthException catch (e) {
-      print('auth rezistor $e');
+      print('$e');
       return false;
     }
   }
 
   static Future<dynamic> emailSignIn(
       {required String email, required String pass}) async {
-    final UserCredential _result = await _firebaseAuth
-        .signInWithEmailAndPassword(email: email, password: pass);
     try {
-      currentUser = _result.user;
+      final UserCredential results = await _firebaseAuth
+          .signInWithEmailAndPassword(email: email, password: pass);
+      currentUser = results.user;
       print('login finished');
       return true;
     } on FirebaseAuthException catch (e) {
