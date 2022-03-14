@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sliver_appbar/utils/auth.dart';
@@ -17,6 +19,7 @@ class _SignUpState extends State<SignUp> {
   TextEditingController nameController = TextEditingController();
   File? image;
   ImagePicker picker = ImagePicker();
+
   Future<void> getImageFromGallery() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
@@ -24,6 +27,15 @@ class _SignUpState extends State<SignUp> {
         image = File(pickedFile.path);
       });
     }
+  }
+
+  Future<void> upLoadImage(String uid) async {
+    final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
+    final Reference reference = firebaseStorage.ref();
+    await reference.child(uid).putFile(image!);
+    //先ほどアップロードした画像のリンクを取得。
+    String downloadUrl = await firebaseStorage.ref(uid).getDownloadURL();
+    print('imagePath : $downloadUrl');
   }
 
   @override
@@ -75,12 +87,14 @@ class _SignUpState extends State<SignUp> {
                     var result = await Authentication.signUp(
                         email: emailController.text,
                         pass: passwordController.text);
-                    if (result == true) {
+                    if (result is UserCredential) {
+                      await upLoadImage(result.user!.uid);
+
                       Navigator.pop(context);
                     }
                   }
                 },
-                child: const Text("新規アカウント作成"))
+                child: const Text("新規アカウント作成")),
           ],
         ),
       ),

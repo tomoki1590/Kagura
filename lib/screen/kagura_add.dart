@@ -18,6 +18,9 @@ class _KaguraAddState extends State<KaguraAdd> {
 
   final ImagePicker picker = ImagePicker();
   final ImagePicker pickers = ImagePicker();
+  TextEditingController groupNameController = TextEditingController();
+  TextEditingController perfomanceController = TextEditingController();
+  TextEditingController areaController = TextEditingController();
 
   VideoPlayerController? _controller;
 
@@ -60,61 +63,93 @@ class _KaguraAddState extends State<KaguraAdd> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('写真などの追加画面'),
-        actions: [ElevatedButton(onPressed: () {}, child: Text('保存'))],
-      ),
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: Container(
-          child: SingleChildScrollView(
+        appBar: AppBar(
+          title: Text('写真などの追加画面'),
+          actions: [ElevatedButton(onPressed: () {}, child: Text('保存'))],
+        ),
+        body: SingleChildScrollView(
             child: Column(
-              children: [
-                ElevatedButton(
-                  child: Icon(Icons.image),
-                  onPressed: getImage,
+          children: [
+            Center(
+              child: Container(
+                width: 300,
+                child: Column(
+                  children: [
+                    TextField(
+                      keyboardType: TextInputType.multiline,
+                      maxLines: null,
+                      controller: groupNameController,
+                      decoration: InputDecoration(hintText: '神楽団名'),
+                      autofocus: true,
+                    ),
+                    TextField(
+                      keyboardType: TextInputType.multiline,
+                      maxLines: null,
+                      controller: perfomanceController,
+                      decoration: InputDecoration(hintText: '演目'),
+                    ),
+                    TextField(
+                      keyboardType: TextInputType.multiline,
+                      maxLines: null,
+                      controller: areaController,
+                      decoration: InputDecoration(hintText: '撮影場所など'),
+                    ),
+                  ],
                 ),
-                ElevatedButton(
-                  child: Icon(Icons.image),
-                  onPressed: getImages,
-                ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
+              ),
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: Container(
+                child: SingleChildScrollView(
+                  child: Column(
                     children: [
-                      Container(
-                        height: 300,
-                        width: 200,
-                        child: image == null
-                            ? Text('画像が選ばれておりません')
-                            : Image.file(image!),
+                      ElevatedButton(
+                        child: Icon(Icons.image),
+                        onPressed: getImage,
+                      ),
+                      ElevatedButton(
+                        child: Icon(Icons.image),
+                        onPressed: getImages,
+                      ),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            Container(
+                              height: 200,
+                              width: 300,
+                              child: image == null
+                                  ? Text('画像が選ばれておりません')
+                                  : Image.file(image!),
+                            ),
+                            Container(
+                              height: 200,
+                              width: 300,
+                              child: images == null
+                                  ? Text('画像が選ばれておりません')
+                                  : Image.file(images!),
+                            ),
+                          ],
+                        ),
+                      ),
+                      ElevatedButton(
+                        child: Icon(Icons.movie),
+                        onPressed: getVideo,
                       ),
                       Container(
-                        height: 300,
-                        width: 300,
-                        child: images == null
-                            ? Text('画像が選ばれておりません')
-                            : Image.file(images!),
-                      ),
+                          width: 200,
+                          height: 300,
+                          child: _controller == null
+                              ? Text('動画が選ばれていません')
+                              : VideoPlayer(_controller!))
                     ],
                   ),
                 ),
-                ElevatedButton(
-                  child: Icon(Icons.movie),
-                  onPressed: getVideo,
-                ),
-                Container(
-                    width: 300,
-                    height: 300,
-                    child: _controller == null
-                        ? Text('動画が選ばれていません')
-                        : VideoPlayer(_controller!))
-              ],
+              ),
             ),
-          ),
-        ),
-      ),
-    );
+          ],
+        )));
   }
 }
