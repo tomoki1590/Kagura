@@ -27,7 +27,7 @@ class AddTab extends ConsumerWidget {
         child: Column(
           children: [
             Center(
-              child: Container(
+              child: SizedBox(
                 width: 300,
                 child: Column(
                   children: [
@@ -35,7 +35,7 @@ class AddTab extends ConsumerWidget {
                       keyboardType: TextInputType.multiline,
                       maxLines: null,
                       controller: groupNameController,
-                      decoration: InputDecoration(hintText: '神楽団名'),
+                      decoration: const InputDecoration(hintText: '神楽団名'),
                       autofocus: true,
                       onChanged: (homeName) {
                         ref.watch(getHomeName);
@@ -45,13 +45,13 @@ class AddTab extends ConsumerWidget {
                       keyboardType: TextInputType.multiline,
                       maxLines: null,
                       controller: perfomanceController,
-                      decoration: InputDecoration(hintText: '演目'),
+                      decoration: const InputDecoration(hintText: '演目'),
                     ),
                     TextField(
                       keyboardType: TextInputType.multiline,
                       maxLines: null,
                       controller: areaController,
-                      decoration: InputDecoration(hintText: '撮影場所など'),
+                      decoration: const InputDecoration(hintText: '撮影場所など'),
                     ),
                   ],
                 ),
@@ -63,13 +63,13 @@ class AddTab extends ConsumerWidget {
                 child: ElevatedButton(
                   onPressed: () async {
                     final pickedFile =
-                        await picker.getImage(source: ImageSource.gallery);
+                        await picker.pickImage(source: ImageSource.gallery);
 
                     if (pickedFile != null) {
                       getImageNotifier.setImageFile(File(pickedFile.path));
                     }
                   },
-                  child: Icon(Icons.photo),
+                  child: const Icon(Icons.photo),
                 ),
               ),
             ),
@@ -79,12 +79,12 @@ class AddTab extends ConsumerWidget {
                 child: ElevatedButton(
                   onPressed: () async {
                     final pickedFile =
-                        await picker.getVideo(source: ImageSource.gallery);
+                        await picker.pickVideo(source: ImageSource.gallery);
                     if (pickedFile != null) {
                       getImageNotifier.setImageFile(File(pickedFile.path));
                     }
                   },
-                  child: Icon(Icons.movie),
+                  child: const Icon(Icons.movie),
                 ),
               ),
             ),

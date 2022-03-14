@@ -80,14 +80,16 @@ class _SignUpState extends State<SignUp> {
                       String imagepath =
                           await Fanction.upLoadImage(result.user!.uid, image!);
                       Account newAccount = Account(
-                          id: result.user!.uid,
-                          name: nameController.text,
-                          imagePath: imagepath,
-                          userid: uidController.text);
+                        id: result.user!.uid,
+                        name: nameController.text,
+                        imagePath: imagepath,
+                      );
                       var results = await UserFireStore.setUser(newAccount);
                       if (results == true) {
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context) => Login()));
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Login()));
                       }
                     }
                   }

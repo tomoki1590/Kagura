@@ -11,7 +11,6 @@ class UserFireStore {
     try {
       await userdata.doc(newAccount.id).set({
         'name': newAccount.name,
-        'userid': newAccount.userid,
         'imagePath': newAccount.imagePath,
         'createdTime': Timestamp.now(),
         'updateTime': Timestamp.now(),
@@ -32,12 +31,10 @@ class UserFireStore {
       Account myAccount = Account(
         id: uid,
         name: data['name'],
-        userid: data['userid'],
         imagePath: data['imagePath'],
         createdTime: data['createdTime'],
-        updateTime: data['updataTime'],
+        updateTime: data['updateTime'],
       );
-      //今新しく作ったmyAccountを前のものに代入
       Authentication.myAccount = myAccount;
       print('User Success');
       return true;

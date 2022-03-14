@@ -25,10 +25,14 @@ class Authentication {
           .signInWithEmailAndPassword(email: email, password: pass);
       currentUser = results.user;
       print('login finished');
-      return true;
+      return results;
     } on FirebaseAuthException catch (e) {
       print('auth lost,$e');
       return false;
     }
+  }
+
+  static Future<void> logOut() async {
+    await _firebaseAuth.signOut();
   }
 }

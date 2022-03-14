@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sliver_appbar/screen/account/login.dart';
+import 'package:sliver_appbar/utils/account.dart';
+import 'package:sliver_appbar/utils/auth.dart';
 
 class AccountTab extends StatefulWidget {
   const AccountTab({Key? key}) : super(key: key);
@@ -8,6 +11,8 @@ class AccountTab extends StatefulWidget {
 }
 
 class _AccountTabState extends State<AccountTab> {
+  Account myAccountPage = Authentication.myAccount!;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,39 +20,36 @@ class _AccountTabState extends State<AccountTab> {
         child: Column(
           children: [
             Container(
-              color: Colors.black,
-              height: 150,
+              color: Colors.white,
+              height: 200,
               child: Column(
                 children: [
                   Row(
                     children: [
-                      const CircleAvatar(
-                        radius: 20,
-                        foregroundImage: NetworkImage(
-                          "https://pbs.twimg.com/media/Dt5OowNU0AAznML?format=jpg&name=large",
-                        ),
+                      CircleAvatar(
+                        radius: 50,
+                        foregroundImage: NetworkImage(myAccountPage.imagePath),
                       ),
-                      Column(
-                        children: [Text("username"), Text("userId")],
-                      )
                     ],
                   ),
+                  SizedBox(
+                      width: 200, height: 50, child: Text(myAccountPage.name)),
                 ],
               ),
-            ),
-            const ListTile(
-              title: Text(''),
-            ),
-            const ListTile(
-              title: Text("退会"),
-              onTap: null,
             ),
             const ListTile(
               title: Text("所属神楽団"),
             ),
             const ListTile(
               title: Text("data"),
-            )
+            ),
+            ElevatedButton(
+                child: Text("退会"),
+                onPressed: () {
+                  Authentication.logOut();
+                  Navigator.pushReplacement(context,
+                      (MaterialPageRoute(builder: (context) => Login())));
+                }),
           ],
         ),
       ),

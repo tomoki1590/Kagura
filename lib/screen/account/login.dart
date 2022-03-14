@@ -1,9 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_signin_button/button_view.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:sliver_appbar/screen/account/sign_up.dart';
 import 'package:sliver_appbar/screen/home_screen.dart';
 import 'package:sliver_appbar/utils/auth.dart';
+import 'package:sliver_appbar/utils/firestore/users.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("入団"),
+        title: const Text("入団"),
       ),
       body: SingleChildScrollView(
         child: Center(
@@ -48,11 +49,17 @@ class _LoginState extends State<Login> {
                     var result = await Authentication.emailSignIn(
                         email: emailController.text,
                         pass: passwordController.text);
-                    if (result == true) {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => HomeScreen()));
+                    if (result is UserCredential) {
+                      var _results =
+                          await UserFireStore.getUser(result.user!.uid);
+                      if (_results == true) {
+                        print('all Scussed');
+
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomeScreen()));
+                      }
                     }
                   },
                   child: const Text('Login')),
@@ -62,8 +69,10 @@ class _LoginState extends State<Login> {
               ),
               TextButton(
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => SignUp()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SignUp()));
                   },
                   child: const Text("新規登録")),
 
