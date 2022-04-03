@@ -19,6 +19,7 @@ class _SignUpState extends State<SignUp> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController nameController = TextEditingController();
+  TextEditingController kaguraGroupController = TextEditingController();
   TextEditingController uidController = TextEditingController();
   File? image;
 
@@ -56,6 +57,13 @@ class _SignUpState extends State<SignUp> {
             SizedBox(
               width: 300,
               child: TextField(
+                controller: kaguraGroupController,
+                decoration: const InputDecoration(hintText: 'kaguraGroup'),
+              ),
+            ),
+            SizedBox(
+              width: 300,
+              child: TextField(
                 controller: emailController,
                 decoration: const InputDecoration(hintText: 'email'),
               ),
@@ -70,6 +78,7 @@ class _SignUpState extends State<SignUp> {
             ElevatedButton(
                 onPressed: () async {
                   if (nameController.text.isNotEmpty &&
+                      kaguraGroupController.text.isNotEmpty &&
                       emailController.text.isNotEmpty &&
                       passwordController.text.isNotEmpty &&
                       image != null) {
@@ -82,6 +91,7 @@ class _SignUpState extends State<SignUp> {
                       Account newAccount = Account(
                         id: result.user!.uid,
                         name: nameController.text,
+                        kaguraGroup: kaguraGroupController.text,
                         imagePath: imagepath,
                       );
                       var results = await UserFireStore.setUser(newAccount);

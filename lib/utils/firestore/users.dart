@@ -10,6 +10,7 @@ class UserFireStore {
   static Future<dynamic> setUser(Account newAccount) async {
     try {
       await userdata.doc(newAccount.id).set({
+        'kaguraGroup': newAccount.kaguraGroup,
         'name': newAccount.name,
         'imagePath': newAccount.imagePath,
         'createdTime': Timestamp.now(),
@@ -31,6 +32,7 @@ class UserFireStore {
       Account myAccount = Account(
         id: uid,
         name: data['name'],
+        kaguraGroup: data['kaguraGroup'],
         imagePath: data['imagePath'],
         createdTime: data['createdTime'],
         updateTime: data['updateTime'],

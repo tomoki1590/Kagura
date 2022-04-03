@@ -30,6 +30,7 @@ class _KaguraTabState extends State<KaguraTab> {
                 ],
               ),
             ),
+            Text('data'),
             Card(
               elevation: 4,
               margin: EdgeInsets.zero,
@@ -59,10 +60,7 @@ class _KaguraTabState extends State<KaguraTab> {
                 SizedBox(
                   height: 300,
                   width: 300,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: Container(),
-                  ),
+                  child: Container(),
                 ),
                 Image.network(
                   "https://pbs.twimg.com/media/Dt5OowNU0AAznML?format=jpg&name=large",

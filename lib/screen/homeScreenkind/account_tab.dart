@@ -20,7 +20,7 @@ class _AccountTabState extends State<AccountTab> {
         child: Column(
           children: [
             Container(
-              color: Colors.white,
+              color: Colors.brown,
               height: 200,
               child: Column(
                 children: [
@@ -30,21 +30,24 @@ class _AccountTabState extends State<AccountTab> {
                         radius: 50,
                         foregroundImage: NetworkImage(myAccountPage.imagePath),
                       ),
+                      Text('名前:'),
+                      Text(myAccountPage.name),
                     ],
                   ),
-                  SizedBox(
-                      width: 200, height: 50, child: Text(myAccountPage.name)),
+                  Row(
+                    children: [Text('所属神楽団:'), Text(myAccountPage.kaguraGroup)],
+                  ),
                 ],
               ),
             ),
             const ListTile(
-              title: Text("所属神楽団"),
+              title: Text(""),
             ),
             const ListTile(
               title: Text("data"),
             ),
             ElevatedButton(
-                child: Text("退会"),
+                child: const Text("退会"),
                 onPressed: () {
                   Authentication.logOut();
                   Navigator.pushReplacement(context,

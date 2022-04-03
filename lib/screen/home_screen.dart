@@ -4,7 +4,7 @@ import 'package:sliver_appbar/screen/homeScreenkind/serch_tab.dart';
 import 'package:sliver_appbar/screen/kagura_add.dart';
 
 import 'homeScreenkind/account_tab.dart';
-import 'homeScreenkind/chat_tab.dart';
+import 'homeScreenkind/chat/chat_tab.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const KaguraTab(),
     KaguraAdd(),
     const SearchTab(),
-    const ChatTab(),
+    const ChatTab(['name']),
     const AccountTab()
   ];
 
