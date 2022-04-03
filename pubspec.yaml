@@ -55,6 +55,7 @@ dependencies:
   chewie: ^1.3.0
   path_provider: ^2.0.9
   flutter_chat_ui: ^1.5.5
+  stream_chat_flutter: ^3.5.1
 
 
 dev_dependencies:

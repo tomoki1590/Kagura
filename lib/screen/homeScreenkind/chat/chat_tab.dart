@@ -8,7 +8,6 @@ class ChatTab extends StatelessWidget {
   const ChatTab(document, {Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final _firebase = FirebaseFirestore.instance;
     return Scaffold(
       appBar: AppBar(
         title: const Text("グループリスト"),
@@ -17,8 +16,10 @@ class ChatTab extends StatelessWidget {
         children: [
           Text('data'),
           StreamBuilder<QuerySnapshot>(
-            stream:
-                _firebase.collection('chat').orderBy('createdAt').snapshots(),
+            stream: FirebaseFirestore.instance
+                .collection('chat')
+                .orderBy('createdAt')
+                .snapshots(),
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasError) {
@@ -33,21 +34,41 @@ class ChatTab extends StatelessWidget {
                 return Expanded(
                   child: ListView(
                     children: documentations.map((document) {
-                      return Card(
-                        child: ListTile(
-                          title: Text(document['name']),
-                          trailing: IconButton(
-                            icon: Icon(Icons.input),
-                            onPressed: () async {
-                              await Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      TalkPage(document['name']),
-                                ),
-                              );
-                            },
+                      return Column(
+                        children: [
+                          Card(
+                            child: ListTile(
+                              title: Text(document['name']),
+                              trailing: IconButton(
+                                icon: Icon(Icons.input),
+                                onPressed: () async {
+                                  await Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          TalkPage(document['name']),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
                           ),
-                        ),
+                          Card(
+                            child: ListTile(
+                              title: Text(document['name']),
+                              trailing: IconButton(
+                                icon: Icon(Icons.input),
+                                onPressed: () async {
+                                  await Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          TalkPage(document['name']),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
                       );
                     }).toList(),
                   ),
