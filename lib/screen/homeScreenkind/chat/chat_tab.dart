@@ -25,33 +25,17 @@ class ChatTab extends StatelessWidget {
               if (snapshot.hasError) {
                 print('Eroor OK?');
                 return Center(
-                  child: const Text('取得できませんでした'),
+                  child: const Text('何も取得できませんでした'),
                 );
               }
               if (snapshot.hasData) {
                 final List<DocumentSnapshot> documentations =
                     snapshot.data!.docs;
-                return Expanded(
+                return Flexible(
                   child: ListView(
                     children: documentations.map((document) {
                       return Column(
                         children: [
-                          Card(
-                            child: ListTile(
-                              title: Text(document['name']),
-                              trailing: IconButton(
-                                icon: Icon(Icons.input),
-                                onPressed: () async {
-                                  await Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          TalkPage(document['name']),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                          ),
                           Card(
                             child: ListTile(
                               title: Text(document['name']),

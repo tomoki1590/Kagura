@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:video_player/video_player.dart';
@@ -148,6 +149,20 @@ class _KaguraAddState extends State<KaguraAdd> {
                   ),
                 ),
               ),
+            ),
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                DottedBorder(
+                  dashPattern: const [2, 1],
+                  child: Container(
+                    height: 100,
+                    width: 100,
+                    color: const Color(0xFFE7E7E7),
+                  ),
+                ),
+                const Icon(Icons.camera_enhance, size: 30),
+              ],
             ),
           ],
         )));

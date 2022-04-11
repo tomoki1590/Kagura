@@ -30,12 +30,15 @@ class _AccountTabState extends State<AccountTab> {
                         radius: 50,
                         foregroundImage: NetworkImage(myAccountPage.imagePath),
                       ),
-                      Text('名前:'),
+                      const Text('名前:'),
                       Text(myAccountPage.name),
                     ],
                   ),
                   Row(
-                    children: [Text('所属神楽団:'), Text(myAccountPage.kaguraGroup)],
+                    children: [
+                      const Text('所属神楽団:'),
+                      Text(myAccountPage.kaguraGroup)
+                    ],
                   ),
                 ],
               ),

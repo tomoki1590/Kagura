@@ -57,34 +57,38 @@ class AddTab extends ConsumerWidget {
                 ),
               ),
             ),
-            Center(
-              child: SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () async {
-                    final pickedFile =
-                        await picker.pickImage(source: ImageSource.gallery);
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: Container(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      ElevatedButton(
+                        onPressed: () async {
+                          final pickedFile = await picker.pickImage(
+                              source: ImageSource.gallery);
 
-                    if (pickedFile != null) {
-                      getImageNotifier.setImageFile(File(pickedFile.path));
-                    }
-                  },
-                  child: const Icon(Icons.photo),
-                ),
-              ),
-            ),
-            Center(
-              child: SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () async {
-                    final pickedFile =
-                        await picker.pickVideo(source: ImageSource.gallery);
-                    if (pickedFile != null) {
-                      getImageNotifier.setImageFile(File(pickedFile.path));
-                    }
-                  },
-                  child: const Icon(Icons.movie),
+                          if (pickedFile != null) {
+                            getImageNotifier
+                                .setImageFile(File(pickedFile.path));
+                          }
+                        },
+                        child: const Icon(Icons.photo),
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          final pickedFile = await picker.pickVideo(
+                              source: ImageSource.gallery);
+                          if (pickedFile != null) {
+                            getImageNotifier
+                                .setImageFile(File(pickedFile.path));
+                          }
+                        },
+                        child: const Icon(Icons.movie),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -95,13 +99,6 @@ class AddTab extends ConsumerWidget {
               const Padding(
                 padding: EdgeInsets.all(10.0),
               ),
-            getImage.imageFile == null
-                ? const Padding(padding: EdgeInsets.all(8.0), child: Text(''))
-                : Image.file(getImage.imageFile!),
-            if (getImage.imageFile != null)
-              const Padding(
-                padding: EdgeInsets.all(10.0),
-              )
             //画像が表示された時に再度画像のとる　表示を変えるのに使用
           ],
         ),

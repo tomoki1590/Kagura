@@ -10,7 +10,7 @@ class AddChatRoom extends StatefulWidget {
 }
 
 class _AddChatRoomState extends State<AddChatRoom> {
-  String roomName = 'hello';
+  String roomName = 'hello AREYOU OK';
 
   TextEditingController chatGroup = TextEditingController();
 
@@ -22,65 +22,68 @@ class _AddChatRoomState extends State<AddChatRoom> {
       appBar: AppBar(
         title: const Text('トークを始めよう'),
       ),
-      body: Container(
-        child: Column(
-          children: [
-            Row(
+      body: Column(
+        children: [
+          Row(
+            children: [
+              SizedBox(
+                width: 300,
+                child: TextField(
+                  decoration: const
+                      InputDecoration(hintText: ('参加するグループを入力してください')),
+                  controller: chatGroup,
+                 
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>const ChatTab(['name'])));
+                },
+                child:const Text('参加'),
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 20.0),
+            child: Row(
               children: [
                 SizedBox(
                   width: 300,
                   child: TextField(
-                    decoration:
-                        InputDecoration(hintText: ('作成するグループを入力してください')),
-                    controller: chatGroup,
-                    onChanged: (String value) {
-                      setState(() {
-                        roomName = value;
-                      });
-                    },
+                    decoration:const
+                        InputDecoration(hintText: ('作成するグループIdを入力してください')),
+                    controller: chatNumber,
+                     onChanged: (String value) {
+                    setState(() {
+                      roomName = value;
+                    });
+                  },
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ChatTab(['name'])));
+                  onPressed: () async {
+                    final date = DateTime.now().toLocal().toIso8601String();
+                    await FirebaseFirestore.instance
+                        .collection('chat')
+                        .doc(roomName)
+                        .set({
+                      'name': roomName,
+                      'createdAt': date,
+                    });
+                     Navigator.pop(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>const ChatTab(['name'])));
                   },
-                  child: Text('作成'),
+                  child:const Text('作成'),
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 20.0),
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: 300,
-                    child: TextField(
-                      decoration:
-                          InputDecoration(hintText: ('参加するグループIdを入力してください')),
-                      controller: chatNumber,
-                    ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      final date = DateTime.now().toLocal().toIso8601String();
-                      await FirebaseFirestore.instance
-                          .collection('chat')
-                          .doc(roomName)
-                          .set({
-                        'name': roomName,
-                        'createdAt': date,
-                      });
-                    },
-                    child: Text('参加'),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
