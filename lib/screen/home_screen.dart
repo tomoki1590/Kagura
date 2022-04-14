@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.account_circle_rounded), label: "アカウント"),
           ],
-          selectedItemColor: Colors.green,
+          selectedItemColor: Colors.amber,
           unselectedItemColor: Colors.black,
         ),
       ),
