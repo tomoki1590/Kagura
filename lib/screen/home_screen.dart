@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "ホーム"),
             BottomNavigationBarItem(icon: Icon(Icons.add), label: "追加"),
             BottomNavigationBarItem(
-                icon: Icon(Icons.search_rounded), label: "検索"),
+                icon: Icon(Icons.search_rounded), label: "Serch"),
             BottomNavigationBarItem(icon: Icon(Icons.chat), label: "チャット"),
             BottomNavigationBarItem(
                 icon: Icon(Icons.account_circle_rounded), label: "アカウント"),
