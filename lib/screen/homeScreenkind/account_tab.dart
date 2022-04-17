@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sliver_appbar/screen/account/login.dart';
 import 'package:sliver_appbar/utils/account.dart';
@@ -11,6 +12,7 @@ class AccountTab extends StatefulWidget {
 }
 
 class _AccountTabState extends State<AccountTab> {
+  
   Account myAccountPage = Authentication.myAccount!;
 
   @override
@@ -51,8 +53,8 @@ class _AccountTabState extends State<AccountTab> {
             ),
             ElevatedButton(
                 child: const Text("退会"),
-                onPressed: () {
-                  Authentication.logOut();
+                onPressed: () async {
+                  await FirebaseAuth.instance.signOut();
                   Navigator.pushReplacement(context,
                       (MaterialPageRoute(builder: (context) => Login())));
                 }),

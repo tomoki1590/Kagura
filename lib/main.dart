@@ -1,9 +1,12 @@
+
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sliver_appbar/screen/account/login.dart';
 import 'package:sliver_appbar/screen/home_screen.dart';
+
+import 'screen/account/login.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized(); //２行目だけだとエラーになるので追加
@@ -15,11 +18,16 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final currentUser = FirebaseAuth.instance.currentUser;
-
-    return currentUser != null
-        ? MaterialApp(home: HomeScreen())
-        : MaterialApp(home: Login());
-  }
+  Widget build(BuildContext context) => MaterialApp(
+      home: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const SizedBox();
+            }
+            if (snapshot.hasData) {
+              return const HomeScreen();
+            }
+            return const Login();
+          }));
 }
