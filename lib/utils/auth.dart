@@ -31,8 +31,4 @@ class Authentication {
       return false;
     }
   }
-
-  static Future<void> logOut() async {
-    await _firebaseAuth.signOut();
-  }
 }
