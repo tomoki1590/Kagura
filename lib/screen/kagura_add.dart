@@ -20,7 +20,7 @@ class _KaguraAddState extends State<KaguraAdd> {
   final ImagePicker picker = ImagePicker();
   final ImagePicker pickers = ImagePicker();
   TextEditingController groupNameController = TextEditingController();
-  TextEditingController perfomanceController = TextEditingController();
+  TextEditingController performanceController = TextEditingController();
   TextEditingController areaController = TextEditingController();
 
   VideoPlayerController? _controller;
@@ -86,13 +86,13 @@ class _KaguraAddState extends State<KaguraAdd> {
                     TextField(
                       keyboardType: TextInputType.multiline,
                       maxLines: null,
-                      controller: perfomanceController,
+                      controller: performanceController,
                       decoration: InputDecoration(hintText: '演目'),
                     ),
                     TextField(
                       keyboardType: TextInputType.multiline,
                       maxLines: null,
-                      controller: areaController,
+                      controller: areaController,r
                       decoration: InputDecoration(hintText: '撮影場所など'),
                     ),
                   ],
