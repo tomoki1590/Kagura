@@ -6,7 +6,8 @@ import 'package:sliver_appbar/screen/account/login.dart';
 import 'package:sliver_appbar/utils/account.dart';
 import 'package:sliver_appbar/utils/auth.dart';
 import 'package:sliver_appbar/utils/fanction.dart';
-import 'package:sliver_appbar/utils/firestore/users.dart';
+
+import '../../utils/firestore/users.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);

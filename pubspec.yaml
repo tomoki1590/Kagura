@@ -57,6 +57,7 @@ dependencies:
   flutter_chat_ui: ^1.5.5
   stream_chat_flutter: ^3.5.1
   dotted_border: ^2.0.0+2
+  firebase_database: ^9.0.12
 
 
 dev_dependencies:
