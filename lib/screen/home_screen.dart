@@ -17,7 +17,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _indexList = 0;
   static final List tab = [
-KaguraTab(),
+    KaguraTab(),
     KaguraAdd(),
     const SearchTab(),
     const ChatTab(['name']),

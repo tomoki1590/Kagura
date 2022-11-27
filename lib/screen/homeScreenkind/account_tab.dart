@@ -12,12 +12,12 @@ class AccountTab extends StatefulWidget {
 }
 
 class _AccountTabState extends State<AccountTab> {
-  
   Account myAccountPage = Authentication.myAccount!;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: const Text('アカウント')),
       body: SafeArea(
         child: Column(
           children: [
@@ -56,7 +56,7 @@ class _AccountTabState extends State<AccountTab> {
                 onPressed: () async {
                   await FirebaseAuth.instance.signOut();
                   Navigator.pushReplacement(context,
-                      (MaterialPageRoute(builder: (context) => Login())));
+                      (MaterialPageRoute(builder: (context) => const Login())));
                 }),
           ],
         ),
