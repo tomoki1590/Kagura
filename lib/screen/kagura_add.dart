@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:video_player/video_player.dart';
 
+import '../utils/check_dialog.dart';
+
 class KaguraAdd extends StatefulWidget {
   KaguraAdd({Key? key}) : super(key: key);
 
@@ -20,7 +22,7 @@ class _KaguraAddState extends State<KaguraAdd> {
   final ImagePicker picker = ImagePicker();
   final ImagePicker pickers = ImagePicker();
   TextEditingController groupNameController = TextEditingController();
-  TextEditingController perfomanceController = TextEditingController();
+  TextEditingController performanceController = TextEditingController();
   TextEditingController areaController = TextEditingController();
 
   VideoPlayerController? _controller;
@@ -66,7 +68,20 @@ class _KaguraAddState extends State<KaguraAdd> {
     return Scaffold(
         appBar: AppBar(
           title: Text('写真などの追加画面'),
-          actions: [ElevatedButton(onPressed: () {}, child: Text('保存'))],
+          actions: [
+            ElevatedButton(
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (_) {
+                        return AlertDialog(title: Text('保存しますか？'), actions: [
+                          TextButton(onPressed: () {}, child: Text('yes')),
+                          TextButton(onPressed: ()=> Navigator.pop(context), child: Text('no'))
+                        ]);
+                      });
+                },
+                child: Text('保存'))
+          ],
         ),
         body: SingleChildScrollView(
             child: Column(
@@ -86,7 +101,7 @@ class _KaguraAddState extends State<KaguraAdd> {
                     TextField(
                       keyboardType: TextInputType.multiline,
                       maxLines: null,
-                      controller: perfomanceController,
+                      controller: performanceController,
                       decoration: InputDecoration(hintText: '演目'),
                     ),
                     TextField(
