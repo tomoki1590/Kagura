@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sliver_appbar/screen/homeScreenkind/add_tab.dart';
 import 'package:sliver_appbar/screen/homeScreenkind/kagura_tab.dart';
 import 'package:sliver_appbar/screen/homeScreenkind/serch_tab.dart';
 import 'package:sliver_appbar/screen/kagura_add.dart';
@@ -17,7 +16,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _indexList = 0;
   static final List tab = [
-    KaguraTab(),
+    const KaguraTab(),
     KaguraAdd(),
     const SearchTab(),
     const ChatTab(['name']),

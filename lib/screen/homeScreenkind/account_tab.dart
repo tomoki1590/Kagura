@@ -12,12 +12,14 @@ class AccountTab extends StatefulWidget {
 }
 
 class _AccountTabState extends State<AccountTab> {
-  Account myAccountPage = Authentication.myAccount!;
+  Account? myAccountPage = Authentication.myAccount;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('アカウント')),
+      appBar: AppBar(
+          title: const Text('アカウント'),
+          actions: const <Widget>[Icon(Icons.account_balance)]),
       body: SafeArea(
         child: Column(
           children: [
@@ -30,26 +32,25 @@ class _AccountTabState extends State<AccountTab> {
                     children: [
                       CircleAvatar(
                         radius: 50,
-                        foregroundImage: NetworkImage(myAccountPage.imagePath),
+                        foregroundImage: NetworkImage(myAccountPage
+                                ?.imagePath ??
+                            "https://cdns.iconmonstr.com/wp-content/releases/preview/2018/240/iconmonstr-user-male-thin.png"),
                       ),
                       const Text('名前:'),
-                      Text(myAccountPage.name),
+                      Text(myAccountPage?.name ?? "test"),
                     ],
                   ),
                   Row(
                     children: [
                       const Text('所属神楽団:'),
-                      Text(myAccountPage.kaguraGroup)
+                      Text(myAccountPage?.kaguraGroup ?? "test")
                     ],
                   ),
                 ],
               ),
             ),
             const ListTile(
-              title: Text(""),
-            ),
-            const ListTile(
-              title: Text("data"),
+              title: Text("過去の投稿"),
             ),
             ElevatedButton(
                 child: const Text("退会"),
