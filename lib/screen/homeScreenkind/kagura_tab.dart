@@ -12,7 +12,7 @@ class _KaguraTabState extends State<KaguraTab> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("KAGURAPAGE"),
+        title: const Text("神楽"),
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -30,7 +30,7 @@ class _KaguraTabState extends State<KaguraTab> {
                 ],
               ),
             ),
-            Text('data'),
+            const Text('data'),
             Card(
               elevation: 4,
               margin: EdgeInsets.zero,
@@ -89,8 +89,8 @@ class _KaguraTabState extends State<KaguraTab> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                margin: EdgeInsets.all(20),
-                child: Text("タイトル"),
+                margin: const EdgeInsets.all(20),
+                child: const Text("タイトル"),
               )
             ],
           )),
@@ -102,12 +102,12 @@ class _KaguraTabState extends State<KaguraTab> {
   Widget _textimage() {
     return Container(
       child: Column(
-        children: [Text(" 神楽団紹介文")],
+        children: const [Text(" 神楽団紹介文")],
       ),
     );
   }
 
   Widget _kaguragroupe() {
-    return Text("神楽団名");
+    return const Text("神楽団名");
   }
 }
