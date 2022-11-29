@@ -5,10 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:video_player/video_player.dart';
 
-import '../utils/check_dialog.dart';
-
 class KaguraAdd extends StatefulWidget {
-  KaguraAdd({Key? key}) : super(key: key);
+  const KaguraAdd({Key? key}) : super(key: key);
 
   @override
   State<KaguraAdd> createState() => _KaguraAddState();
@@ -16,40 +14,22 @@ class KaguraAdd extends StatefulWidget {
 
 class _KaguraAddState extends State<KaguraAdd> {
   File? imageVideo;
-  File? image;
-  File? images;
 
   final ImagePicker picker = ImagePicker();
-  final ImagePicker pickers = ImagePicker();
+  List<XFile>? imageList = [];
   TextEditingController groupNameController = TextEditingController();
   TextEditingController performanceController = TextEditingController();
   TextEditingController areaController = TextEditingController();
 
   VideoPlayerController? _controller;
 
-  Future getImages() async {
-    final pickedFiles = await pickers.pickImage(source: ImageSource.gallery);
+  void getImages() async {
+    final List<XFile>? selectedImages = await picker.pickMultiImage();
+    if (selectedImages!.isNotEmpty) {
+      imageList!.addAll(selectedImages);
+    }
     setState(
-      () {
-        if (pickedFiles != null) {
-          images = File(pickedFiles.path);
-        } else {
-          print('No ImagePath');
-        }
-      },
-    );
-  }
-
-  Future getImage() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-    setState(
-      () {
-        if (pickedFile != null) {
-          image = File(pickedFile.path);
-        } else {
-          print('No ImagePath');
-        }
-      },
+      () {},
     );
   }
 
@@ -67,27 +47,32 @@ class _KaguraAddState extends State<KaguraAdd> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('写真などの追加画面'),
+          title: const Text('写真などの追加画面'),
           actions: [
             ElevatedButton(
                 onPressed: () {
                   showDialog(
                       context: context,
                       builder: (_) {
-                        return AlertDialog(title: Text('保存しますか？'), actions: [
-                          TextButton(onPressed: () {}, child: Text('yes')),
-                          TextButton(onPressed: ()=> Navigator.pop(context), child: Text('no'))
-                        ]);
+                        return AlertDialog(
+                            title: const Text('保存しますか？'),
+                            actions: [
+                              TextButton(
+                                  onPressed: () {}, child: const Text('yes')),
+                              TextButton(
+                                  onPressed: () => Navigator.pop(context),
+                                  child: const Text('no'))
+                            ]);
                       });
                 },
-                child: Text('保存'))
+                child: const Text('保存'))
           ],
         ),
         body: SingleChildScrollView(
             child: Column(
           children: [
             Center(
-              child: Container(
+              child: SizedBox(
                 width: 300,
                 child: Column(
                   children: [
@@ -95,26 +80,26 @@ class _KaguraAddState extends State<KaguraAdd> {
                       keyboardType: TextInputType.multiline,
                       maxLines: null,
                       controller: groupNameController,
-                      decoration: InputDecoration(hintText: '神楽団名'),
+                      decoration: const InputDecoration(hintText: '神楽団名'),
                       autofocus: true,
                     ),
                     TextField(
                       keyboardType: TextInputType.multiline,
                       maxLines: null,
                       controller: performanceController,
-                      decoration: InputDecoration(hintText: '演目'),
+                      decoration: const InputDecoration(hintText: '演目'),
                     ),
                     TextField(
                       keyboardType: TextInputType.multiline,
                       maxLines: null,
                       controller: areaController,
-                      decoration: InputDecoration(hintText: '撮影場所など'),
+                      decoration: const InputDecoration(hintText: '撮影場所など'),
                     ),
                   ],
                 ),
               ),
             ),
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
               child: Container(
@@ -122,43 +107,38 @@ class _KaguraAddState extends State<KaguraAdd> {
                   child: Column(
                     children: [
                       ElevatedButton(
-                        child: Icon(Icons.image),
-                        onPressed: getImage,
-                      ),
-                      ElevatedButton(
-                        child: Icon(Icons.image),
+                        child: const Icon(Icons.image),
                         onPressed: getImages,
                       ),
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(
                           children: [
-                            Container(
-                              height: 200,
-                              width: 300,
-                              child: image == null
-                                  ? Text('画像が選ばれておりません')
-                                  : Image.file(image!),
-                            ),
-                            Container(
-                              height: 200,
-                              width: 300,
-                              child: images == null
-                                  ? Text('画像が選ばれておりません')
-                                  : Image.file(images!),
-                            ),
+                            SizedBox(
+                                height: 200,
+                                width: 300,
+                                child: GridView.builder(
+                                    itemCount: imageList!.length,
+                                    gridDelegate:
+                                        const SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount: 3),
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return Image.file(
+                                          File(imageList![index].path));
+                                    })),
                           ],
                         ),
                       ),
                       ElevatedButton(
-                        child: Icon(Icons.movie),
+                        child: const Icon(Icons.movie),
                         onPressed: getVideo,
                       ),
-                      Container(
+                      SizedBox(
                           width: 200,
                           height: 300,
                           child: _controller == null
-                              ? Text('動画が選ばれていません')
+                              ? const Text('動画が選ばれていません')
                               : VideoPlayer(_controller!))
                     ],
                   ),

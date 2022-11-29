@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _indexList = 0;
   static final List tab = [
     const KaguraTab(),
-    KaguraAdd(),
+    const KaguraAdd(),
     const SearchTab(),
     const ChatTab(['name']),
     const AccountTab()
