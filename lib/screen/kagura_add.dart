@@ -58,7 +58,9 @@ class _KaguraAddState extends State<KaguraAdd> {
                             title: const Text('保存しますか？'),
                             actions: [
                               TextButton(
-                                  onPressed: () {}, child: const Text('yes')),
+                                  onPressed: () {
+
+                                  }, child: const Text('yes')),
                               TextButton(
                                   onPressed: () => Navigator.pop(context),
                                   child: const Text('no'))
