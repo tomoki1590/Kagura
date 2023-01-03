@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sliver_appbar/screen/account/sign_up.dart';
 import 'package:sliver_appbar/screen/home_screen.dart';
 import 'package:sliver_appbar/utils/auth.dart';
@@ -17,6 +18,16 @@ class _LoginState extends State<Login> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  Future<void> signInWithGogle() async {
+    final googleUser =
+        await GoogleSignIn(scopes: ['profile', 'email']).signIn();
+    final googleAuth = await googleUser?.authentication;
+    final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
+
+    await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +38,7 @@ class _LoginState extends State<Login> {
         child: Center(
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 width: 300,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 30),
@@ -58,7 +69,7 @@ class _LoginState extends State<Login> {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => HomeScreen()));
+                                builder: (context) => const HomeScreen()));
                       }
                     }
                   },
@@ -75,10 +86,16 @@ class _LoginState extends State<Login> {
                             builder: (context) => const SignUp()));
                   },
                   child: const Text("新規登録")),
+              SignInButton(Buttons.Google, text: "Googleログイン",
+                  onPressed: () async {
+                await signInWithGogle();
 
-              ///TODOログイン処理
-              SignInButton(Buttons.Google,
-                  text: "Sign up with Google", onPressed: () {}),
+                if (mounted) {
+                   Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => const HomeScreen()),
+                    (route) => true);
+                }
+              }),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SignInButton(

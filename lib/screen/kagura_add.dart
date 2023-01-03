@@ -28,9 +28,6 @@ class _KaguraAddState extends State<KaguraAdd> {
     if (selectedImages!.isNotEmpty) {
       imageList!.addAll(selectedImages);
     }
-    setState(
-      () {},
-    );
   }
 
   Future getVideo() async {
@@ -58,9 +55,7 @@ class _KaguraAddState extends State<KaguraAdd> {
                             title: const Text('保存しますか？'),
                             actions: [
                               TextButton(
-                                  onPressed: () {
-
-                                  }, child: const Text('yes')),
+                                  onPressed: () {}, child: const Text('yes')),
                               TextButton(
                                   onPressed: () => Navigator.pop(context),
                                   child: const Text('no'))
@@ -104,46 +99,44 @@ class _KaguraAddState extends State<KaguraAdd> {
             SizedBox(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
-              child: Container(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      ElevatedButton(
-                        child: const Icon(Icons.image),
-                        onPressed: getImages,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    ElevatedButton(
+                      child: const Icon(Icons.image),
+                      onPressed: getImages,
+                    ),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          SizedBox(
+                              height: 200,
+                              width: 300,
+                              child: GridView.builder(
+                                  itemCount: imageList!.length,
+                                  gridDelegate:
+                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount: 3),
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return Image.file(
+                                        File(imageList![index].path));
+                                  })),
+                        ],
                       ),
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: [
-                            SizedBox(
-                                height: 200,
-                                width: 300,
-                                child: GridView.builder(
-                                    itemCount: imageList!.length,
-                                    gridDelegate:
-                                        const SliverGridDelegateWithFixedCrossAxisCount(
-                                            crossAxisCount: 3),
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      return Image.file(
-                                          File(imageList![index].path));
-                                    })),
-                          ],
-                        ),
-                      ),
-                      ElevatedButton(
-                        child: const Icon(Icons.movie),
-                        onPressed: getVideo,
-                      ),
-                      SizedBox(
-                          width: 200,
-                          height: 300,
-                          child: _controller == null
-                              ? const Text('動画が選ばれていません')
-                              : VideoPlayer(_controller!))
-                    ],
-                  ),
+                    ),
+                    ElevatedButton(
+                      child: const Icon(Icons.movie),
+                      onPressed: getVideo,
+                    ),
+                    SizedBox(
+                        width: 200,
+                        height: 300,
+                        child: _controller == null
+                            ? const Text('動画が選ばれていません')
+                            : VideoPlayer(_controller!))
+                  ],
                 ),
               ),
             ),

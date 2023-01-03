@@ -14,7 +14,7 @@ class SignUp extends StatelessWidget {
       create: (_) => SignUpModel(),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('新規登録'),
+          title: const Text('新規登録'),
         ),
         body: Center(
           child: Consumer<SignUpModel>(builder: (context, model, child) {
@@ -25,18 +25,18 @@ class SignUp extends StatelessWidget {
                 //   radius: 50,
                 //   child: const Icon(Icons.add),
                 // ),
-                SizedBox(
+                const SizedBox(
                   width: 300,
                   child: TextField(
                     controller: null,
-                    decoration: const InputDecoration(hintText: 'name'),
+                    decoration: InputDecoration(hintText: 'name'),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 300,
                   child: TextField(
                     controller: null,
-                    decoration: const InputDecoration(hintText: 'kaguraGroup'),
+                    decoration: InputDecoration(hintText: 'kaguraGroup'),
                   ),
                 ),
                 SizedBox(

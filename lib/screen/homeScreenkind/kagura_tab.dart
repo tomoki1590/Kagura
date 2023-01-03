@@ -81,29 +81,25 @@ class _KaguraTabState extends State<KaguraTab> {
   }
 
   Widget _titleimage() {
-    return Container(
-      child: Row(
-        children: [
-          Expanded(
-              child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                margin: const EdgeInsets.all(20),
-                child: const Text("タイトル"),
-              )
-            ],
-          )),
-        ],
-      ),
+    return Row(
+      children: [
+        Expanded(
+            child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              margin: const EdgeInsets.all(20),
+              child: const Text("タイトル"),
+            )
+          ],
+        )),
+      ],
     );
   }
 
   Widget _textimage() {
-    return Container(
-      child: Column(
-        children: const [Text(" 神楽団紹介文")],
-      ),
+    return Column(
+      children: const [Text(" 神楽団紹介文")],
     );
   }
 

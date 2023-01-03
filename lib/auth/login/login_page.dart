@@ -14,14 +14,14 @@ class LoginPage extends StatelessWidget {
       create: (_) => LoginModel(),
       child: Scaffold(
         appBar: AppBar(
-          title: Text("入団"),
+          title: const Text("入団"),
         ),
         body: SingleChildScrollView(
           child: Center(
             child: Consumer<LoginModel>(builder: (context, model, child) {
               return Column(
                 children: [
-                  Container(
+                  SizedBox(
                     width: 300,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 30),
@@ -45,7 +45,7 @@ class LoginPage extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HomeScreen()));
+                                  builder: (context) => const HomeScreen()));
                         } catch (e) {
                           final snackBar = SnackBar(
                             backgroundColor: Colors.red,
@@ -64,8 +64,6 @@ class LoginPage extends StatelessWidget {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) => SignUp()));
                       },
-
-                      ///TODOサインアップ処理
                       child: const Text("新規登録")),
                 ],
               );

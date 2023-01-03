@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sliver_appbar/utils/account.dart';
 import 'package:sliver_appbar/utils/auth.dart';
@@ -16,7 +18,7 @@ class UserFireStore {
         'createdTime': Timestamp.now(),
         'updateTime': Timestamp.now(),
       });
-      print('user success Account');
+     print('user success Account');
       return true;
     } on FirebaseException catch (e) {
       print(' error:$e');

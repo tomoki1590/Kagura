@@ -56,6 +56,18 @@
 <string>カメラを許可してください</string>
 <key>NSMicrophoneUsageDescription</key>
 <string>マイクの使用を許可しますか</string>
+<!-- Google Sign-in Section -->
+<key>CFBundleURLTypes</key>
+<array>
+	<dict>
+		<key>CFBundleTypeRole</key>
+		<string>Editor</string>
+		<key>CFBundleURLSchemes</key>
+		<array>
+			<string>com.googleusercontent.apps.860547245671-jd5s0omljhglufa8gencp8s45rqkosof</string>
+		</array>
+	</dict>
+</array>
 </dict>
 
 </plist>
