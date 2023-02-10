@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sliver_appbar/screen/account/login.dart';
+import 'package:sliver_appbar/screen/homeScreenkind/chat/settign/acccount_setting_page.dart';
 import 'package:sliver_appbar/utils/account.dart';
 import 'package:sliver_appbar/utils/auth.dart';
 
@@ -18,8 +19,17 @@ class _AccountTabState extends State<AccountTab> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text('アカウント'),
-          actions: const <Widget>[Icon(Icons.account_box)]),
+        title: const Text('アカウント'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.account_box),
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (builder) => const AccountSettingPage()));
+            },
+          ),
+        ],
+      ),
       body: Column(
         children: [
           Container(
@@ -31,8 +41,7 @@ class _AccountTabState extends State<AccountTab> {
                   children: [
                     CircleAvatar(
                       radius: 50,
-                      foregroundImage: NetworkImage(myAccountPage
-                              ?.imagePath ??
+                      foregroundImage: NetworkImage(myAccountPage?.imagePath ??
                           "https://cdns.iconmonstr.com/wp-content/releases/preview/2018/240/iconmonstr-user-male-thin.png"),
                     ),
                     Row(
