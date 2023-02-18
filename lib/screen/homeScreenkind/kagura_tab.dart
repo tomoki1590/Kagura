@@ -19,7 +19,7 @@ class _KaguraTabState extends State<KaguraTab> {
         child: Column(
           children: [
             Card(
-              elevation: 4,
+              elevation: 5,
               margin: EdgeInsets.zero,
               child: Column(
                 children: [
