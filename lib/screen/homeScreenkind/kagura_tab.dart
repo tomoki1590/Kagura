@@ -12,7 +12,7 @@ class _KaguraTabState extends State<KaguraTab> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("神楽"),
+        title:  const Text("神楽"),
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
